@@ -1,13 +1,14 @@
 package _00_IntroToStacks;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class _02_TextUndoRedo {
+public class _02_TextUndoRedo implements KeyListener {
 	
 	/*
 	 * Create a JFrame with a JPanel and a JLabel.
@@ -24,51 +25,85 @@ public class _02_TextUndoRedo {
 	 * the top Character is popped off the Stack and added back to the JLabel.
 	 */
 
-	static JFrame frame = new JFrame();
+	static JFrame frame = new JFrame("Frame");
 	static JPanel panel = new JPanel();
-	static JLabel label = new JLabel("");
-
-	static Stack<String> edit = new Stack<String>();
+	static JLabel label = new JLabel();
 
 	public static void main(String[] args) {
-
+		
+		_02_TextUndoRedo tur = new _02_TextUndoRedo();
+		tur.setup();
+		
+	}
+	
+	public void setup() {
+		
 		frame.add(panel);
 		panel.add(label);
+		frame.addKeyListener(this);
 
 		frame.setVisible(true);
 		frame.pack();
-		
+
 	}
-
+	
+	
 	public void keyPressed(KeyEvent e) {
-
+		
+		Stack<String> text = new Stack<String>();
+		Stack<String> pop = new Stack<String>();
+		
 		int key = e.getKeyCode();
-		String conv0 = Integer.toString(key);
+		String convert = Integer.toString(key);
+		
+		int last = e.getKeyCode() - 1;
+		String lastconvert = Integer.toString(last);
 
-		int lastkey = e.getKeyCode();
-		String conv1 = Integer.toString(lastkey);
-
-		if (key == KeyEvent.VK_DELETE) {
-
-			edit.push(conv0);
-
+		if( key == KeyEvent.VK_BACK_SPACE) {			
+			
+			// remove from jlabel
+			text.pop();
+			
+			// save to stack
+			pop.push(lastconvert);
+			
 		}
 
-		else if (key == KeyEvent.VK_ENTER) {
-
-			edit.pop();
-			label.setText(label.getText() + conv1);
-
+		else if(key == KeyEvent.VK_ENTER) {
+			
+			// pop from stack
+			pop.pop();
+			
+			// add to jlabel
+			text.push(lastconvert);
+			
 		}
 
 		else {
-
-			label.setText(label.getText() + conv0);
-
+			
+			// add to jlabel
+			text.push(convert);
+			label.setText(text.toString());
+			
 		}
 		
-		System.out.println(conv0);
-
+		System.out.println(text.toString());
+		
 	}
+
+	
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
