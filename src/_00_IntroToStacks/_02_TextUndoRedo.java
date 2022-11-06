@@ -25,7 +25,7 @@ public class _02_TextUndoRedo implements KeyListener {
 	 * the top Character is popped off the Stack and added back to the JLabel.
 	 */
 
-	static JFrame frame = new JFrame("Frame");
+	static JFrame frame = new JFrame("Text Editor");
 	static JPanel panel = new JPanel();
 	static JLabel label = new JLabel();
 
@@ -53,11 +53,11 @@ public class _02_TextUndoRedo implements KeyListener {
 		Stack<String> text = new Stack<String>();
 		Stack<String> pop = new Stack<String>();
 		
-		int key = e.getKeyCode();
-		String convert = Integer.toString(key);
+		char key = e.getKeyChar();
+		String stringkey = String.valueOf(key);
 		
 		int last = e.getKeyCode() - 1;
-		String lastconvert = Integer.toString(last);
+		String stringlast = String.valueOf(last);
 
 		if( key == KeyEvent.VK_BACK_SPACE) {			
 			
@@ -65,25 +65,25 @@ public class _02_TextUndoRedo implements KeyListener {
 			text.pop();
 			
 			// save to stack
-			pop.push(lastconvert);
+			pop.push(stringkey);
+	
+			// update text
+			label.setText(label.getText());
 			
 		}
 
 		else if(key == KeyEvent.VK_ENTER) {
 			
-			// pop from stack
 			pop.pop();
-			
-			// add to jlabel
-			text.push(lastconvert);
-			
+			text.push(stringlast);			
+			label.setText(label.getText() + text.toString());
+
 		}
 
 		else {
 			
-			// add to jlabel
-			text.push(convert);
-			label.setText(text.toString());
+			text.push(stringkey);
+			label.setText(label.getText() + text.toString());
 			
 		}
 		
