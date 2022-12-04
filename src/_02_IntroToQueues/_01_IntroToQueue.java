@@ -47,41 +47,78 @@ public class _01_IntroToQueue {
 			hundred.push(randint);
 		}
 
+		System.out.println("Stack Values: ");
+		System.out.println(hundred);
+		System.out.println("");
+
 		// 3. Create a Queue of Doubles using the ArrayDeque class
 		// Note: you have to use the capitalized Double and not double
 		ArrayDeque<Double> queue = new ArrayDeque<Double>();
 
 		// 4. Pop off 5 elements from the Stack and add them to the Queue
-		while (!queue.isEmpty()) {
-			
-			for (int i = hundred.size(); i > hundred.size() - 5; i--) {
-				Double popped = hundred.pop();
-				queue.add(popped);
+		for (int i = 0; i < 5; i++) {
+			Double savedpop = hundred.pop();
+			queue.add(savedpop);
+		}
+
+		System.out.println("Queue Values: ");
+		System.out.println(queue);
+		System.out.println("");
+
+		// 5. Print and remove a random number of elements, from 1 to 5 elements,
+		// from the front of the Queue. Example:
+		// "removing 3 elements from Queue: 25 57 2"
+		while (!(hundred.size() == 0)) {
+
+			Random randrand = new Random();
+			int dblrand = randrand.nextInt(5 - 1) + 1;
+
+			System.out.println("Removing " + dblrand + " elements from Queue: ");
+
+			for (int i = 0; i < dblrand; i++) {
+				Double savedpop = queue.pop();
+				System.out.println(savedpop);
 			}
 
-			// 5. Print and remove a random number of elements, from 1 to 5 elements,
-			// from the front of the Queue. Example:
-			// "removing 3 elements from Queue: 25 57 2"
-			
-			System.out.println("\nremoving 3 elements from Queue: ");
-			while (queue.size() >= 2) {
-				Random random = new Random();
-				int randint = random.nextInt(queue.size() - 1) + 1;
-				System.out.println(queue.remove(randint));
-			}
+			System.out.println("");
 
 			// 6. Pop off as many elements from the stack to fill the Queue with 5
 			// elements. If there aren't enough elements in the Stack to fill the
 			// queue, fill the queue as much as possible.
-			while (queue.size() <= 5) {
-				Double popped = hundred.pop();
-				queue.add(popped);
+
+			if (!(hundred.size() == 0)) {
+
+				for (int i = 0; i < dblrand; i++) {
+					Double savedpop = hundred.pop();
+					queue.add(savedpop);
+				}
+
+				System.out.println("Queue Values: " + queue );
+				System.out.println("");
+				System.out.println("");
+
+			}
+
+			else if (hundred.size() > 0 && hundred.size() < 5) {
+
+				for (int i = hundred.size(); i > 0; i--) {
+					Double savedpop = hundred.pop();
+					queue.add(savedpop);
+				}
+
+				System.out.println("Queue Values: " + queue );
+				System.out.println("");
+				System.out.println("");
+
+			}
+
+			else {
+				System.out.println("Stack is empty.");
 			}
 
 			// 7. Loop until there are no more elements in either the Stack or Queue
 			// and all the elements are printed
-			System.out.println(queue);
-			
+
 		}
 	}
 }
