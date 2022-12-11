@@ -64,61 +64,65 @@ public class _01_IntroToQueue {
 		System.out.println("Queue Values: ");
 		System.out.println(queue);
 		System.out.println("");
+		System.out.println("");
 
 		// 5. Print and remove a random number of elements, from 1 to 5 elements,
 		// from the front of the Queue. Example:
 		// "removing 3 elements from Queue: 25 57 2"
-		while (!(hundred.size() == 0)) {
+		while (!(hundred.size() == 0 && queue.size() == 0)) {
 
 			Random randrand = new Random();
 			int dblrand = randrand.nextInt(5 - 1) + 1;
 
 			System.out.println("Removing " + dblrand + " elements from Queue: ");
 
-			for (int i = 0; i < dblrand; i++) {
+			for (int i = dblrand; i > 0; i--) {
 				Double savedpop = queue.pop();
 				System.out.println(savedpop);
 			}
 
+			System.out.println("");
 			System.out.println("");
 
 			// 6. Pop off as many elements from the stack to fill the Queue with 5
 			// elements. If there aren't enough elements in the Stack to fill the
 			// queue, fill the queue as much as possible.
 
-			if (!(hundred.size() == 0)) {
+			if (hundred.size() >= 5) {
 
 				for (int i = 0; i < dblrand; i++) {
 					Double savedpop = hundred.pop();
 					queue.add(savedpop);
 				}
 
-				System.out.println("Queue Values: " + queue );
+				System.out.println("Queue Values: " + queue);
+				System.out.println("Remaining Stack Values: " + hundred.size());
 				System.out.println("");
 				System.out.println("");
 
 			}
 
-			else if (hundred.size() > 0 && hundred.size() < 5) {
+			else if (hundred.size() < 5 && queue.size() > 0) {
 
-				for (int i = hundred.size(); i > 0; i--) {
+				for (int i = 0; i < hundred.size(); i++) {
 					Double savedpop = hundred.pop();
 					queue.add(savedpop);
 				}
 
-				System.out.println("Queue Values: " + queue );
+				System.out.println("Queue Values: " + queue);
+				System.out.println("Remaining Stack Values: " + hundred.size());
+				System.out.println("1");
 				System.out.println("");
 				System.out.println("");
 
-			}
-
-			else {
-				System.out.println("Stack is empty.");
 			}
 
 			// 7. Loop until there are no more elements in either the Stack or Queue
 			// and all the elements are printed
 
 		}
+
+		System.out.println("Stack and Queue are empty.");
+
 	}
 }
