@@ -34,8 +34,46 @@ import java.util.ArrayDeque;
 
 public class _02_BaseballTickets {
 
-    public static int calculateWaitTime( ArrayDeque<Integer> ticketsQueue, int position ) {
-        
-        return -1;
-    }
+	public static int calculateWaitTime(ArrayDeque<Integer> ticketsQueue, int position) {
+
+		// creating
+		ArrayDeque tix = new ArrayDeque<Integer>();
+		int waittime = 0;
+
+		// add to queue
+		for (int i = ticketsQueue.size(); i > 0; i--) {
+			tix.add(ticketsQueue.pop());
+		}
+
+		System.out.println("");
+		System.out.println("Original Queue: " + tix);
+		System.out.println("");
+
+		// remove and save front of queue
+		Object removed = tix.remove();
+
+		// subtract 1
+		int removedint = (Integer) removed;
+		int newtixvalue = removedint - 1;
+
+		// +1 wait time
+		waittime += 1;
+
+		// if value =/= 0 { add value to end of queue }
+		if (!(newtixvalue == 0)) {
+			tix.add(newtixvalue);
+			System.out.println("New Queue: " + tix);
+			System.out.println("Wait Time: " + waittime);
+
+		}
+
+		// else { end }
+		else {
+			System.out.println("Queue Complete.");
+			System.out.println("Final Wait Time: " + waittime);
+		}
+
+		return waittime;
+
+	}
 }
