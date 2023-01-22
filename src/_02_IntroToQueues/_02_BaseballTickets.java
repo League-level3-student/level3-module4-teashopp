@@ -36,6 +36,20 @@ public class _02_BaseballTickets {
 
 	public static int calculateWaitTime(ArrayDeque<Integer> ticketsQueue, int position) {
 
+		/*
+		 * 
+		 * 2, 5, 3, 6, 4
+		 * ^ 0
+		 * 5, 3, 6, 4, 1
+		 * pos = 4
+		 * 1, 4, 2, 5, 3
+		 * pos = 0
+		 * end
+		 * 
+		 * 0 tix ? pos 0 ?
+		 * 
+		*/
+
 		// creating
 		ArrayDeque tix = new ArrayDeque<Integer>();
 		int waittime = 0;
@@ -47,30 +61,37 @@ public class _02_BaseballTickets {
 
 		System.out.println("");
 		System.out.println("Original Queue: " + tix);
-		System.out.println("");
+		System.out.println("-----");
 
-		// remove and save front of queue
-		Object removed = tix.remove();
+		while (!(position == 0)) {
 
-		// subtract 1
-		int removedint = (Integer) removed;
-		int newtixvalue = removedint - 1;
+			// remove and save front of queue
+			Object removed = tix.remove();
 
-		// +1 wait time
-		waittime += 1;
+			// subtract 1
+			int removedint = (Integer) removed;
+			int newtixvalue = removedint - 1;
 
-		// if value =/= 0 { add value to end of queue }
-		if (!(newtixvalue == 0)) {
-			tix.add(newtixvalue);
-			System.out.println("New Queue: " + tix);
-			System.out.println("Wait Time: " + waittime);
+			// +1 wait time
+			waittime += 1;
 
-		}
+			// if value =/= 0 { add value to end of queue }
+			if (!(newtixvalue == 0)) {
+				tix.add(newtixvalue);
+				System.out.println("New Queue: " + tix);
+				System.out.println("Wait Time: " + waittime);
+				System.out.println("-----");
 
-		// else { end }
-		else {
-			System.out.println("Queue Complete.");
-			System.out.println("Final Wait Time: " + waittime);
+			}
+
+			// else { end }
+			else {
+				System.out.println("Final Queue: " + tix);
+				System.out.println("Final Wait Time: " + waittime);
+				System.out.println("");
+				System.out.println("");
+			}
+
 		}
 
 		return waittime;
