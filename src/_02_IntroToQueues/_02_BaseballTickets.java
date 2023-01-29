@@ -38,20 +38,14 @@ public class _02_BaseballTickets {
 
 		/*
 		 * 
-		 * 2, 5, 3, 6, 4
-		 * ^ 0
-		 * 5, 3, 6, 4, 1
-		 * pos = 4
-		 * 1, 4, 2, 5, 3
-		 * pos = 0
-		 * end
+		 * 2, 5, 3, 6, 4 ^ 0 5, 3, 6, 4, 1 pos = 4 1, 4, 2, 5, 3 pos = 0 end
 		 * 
 		 * 0 tix ? pos 0 ?
 		 * 
-		*/
+		 */
 
 		// creating
-		ArrayDeque tix = new ArrayDeque<Integer>();
+		ArrayDeque<Integer> tix = new ArrayDeque<Integer>();
 		int waittime = 0;
 
 		// add to queue
@@ -63,25 +57,40 @@ public class _02_BaseballTickets {
 		System.out.println("Original Queue: " + tix);
 		System.out.println("-----");
 
-		while (!(position == 0)) {
+		boolean active = true;
+
+		while (active) {
 
 			// remove and save front of queue
-			Object removed = tix.remove();
+			int removed = tix.remove();
 
 			// subtract 1
-			int removedint = (Integer) removed;
-			int newtixvalue = removedint - 1;
+			int newtixvalue = removed - 1;
 
 			// +1 wait time
 			waittime += 1;
 
+			// pos =/= 0, val =/= 0
+			// pos =/= 0, val = = 0
+			// pos = = 0, val =/= 0
+			// pos = = 0, val = = 0
+			
+			/*
+			 * if (value = 0)
+			 * 	if (pos = 0) = true
+			 * 	else (pos =/= 0)
+			 * 
+			 * else (value = / =)
+			 * 
+			 */
+			
 			// if value =/= 0 { add value to end of queue }
-			if (!(newtixvalue == 0)) {
+			if (newtixvalue != 0 && position != 0) {
 				tix.add(newtixvalue);
 				System.out.println("New Queue: " + tix);
 				System.out.println("Wait Time: " + waittime);
 				System.out.println("-----");
-
+				active = true;
 			}
 
 			// else { end }
@@ -90,7 +99,29 @@ public class _02_BaseballTickets {
 				System.out.println("Final Wait Time: " + waittime);
 				System.out.println("");
 				System.out.println("");
+				active = false;
 			}
+			
+
+			/*
+			// if value =/= 0 { add value to end of queue }
+			if (!(newtixvalue == 0)) {
+				tix.add(newtixvalue);
+				System.out.println("New Queue: " + tix);
+				System.out.println("Wait Time: " + waittime);
+				System.out.println("-----");
+				active = true;
+			}
+
+			// else { end }
+			else {
+				System.out.println("Final Queue: " + tix);
+				System.out.println("Final Wait Time: " + waittime);
+				System.out.println("");
+				System.out.println("");
+				active = false;
+			}
+			*/
 
 		}
 
