@@ -58,6 +58,7 @@ public class _02_BaseballTickets {
 		System.out.println("-----");
 
 		boolean active = true;
+		int savedpos = position;
 
 		while (active) {
 
@@ -69,59 +70,46 @@ public class _02_BaseballTickets {
 
 			// +1 wait time
 			waittime += 1;
-
+			
 			// pos =/= 0, val =/= 0
 			// pos =/= 0, val = = 0
 			// pos = = 0, val =/= 0
 			// pos = = 0, val = = 0
+						
+			if(position != 0) {
+				position = position - 1;
+			}
 			
+			else {
+				position = savedpos;
+			}
+
 			/*
-			 * if (value = 0)
-			 * 	if (pos = 0) = true
-			 * 	else (pos =/= 0)
+			 * if (value = 0) if (pos = 0) = true else (pos =/= 0)
 			 * 
 			 * else (value = / =)
 			 * 
 			 */
-			
-			// if value =/= 0 { add value to end of queue }
-			if (newtixvalue != 0 && position != 0) {
+
+			if (newtixvalue == 0) {
+
+				if (position == 0) {
+					System.out.println("Final Queue: " + tix);
+					System.out.println("Final Wait Time: " + waittime);
+					System.out.println("");
+					System.out.println("");
+					active = false;
+				}
+
+			}
+
+			else {
 				tix.add(newtixvalue);
+				System.out.println("Position: " + position);
 				System.out.println("New Queue: " + tix);
 				System.out.println("Wait Time: " + waittime);
 				System.out.println("-----");
-				active = true;
 			}
-
-			// else { end }
-			else {
-				System.out.println("Final Queue: " + tix);
-				System.out.println("Final Wait Time: " + waittime);
-				System.out.println("");
-				System.out.println("");
-				active = false;
-			}
-			
-
-			/*
-			// if value =/= 0 { add value to end of queue }
-			if (!(newtixvalue == 0)) {
-				tix.add(newtixvalue);
-				System.out.println("New Queue: " + tix);
-				System.out.println("Wait Time: " + waittime);
-				System.out.println("-----");
-				active = true;
-			}
-
-			// else { end }
-			else {
-				System.out.println("Final Queue: " + tix);
-				System.out.println("Final Wait Time: " + waittime);
-				System.out.println("");
-				System.out.println("");
-				active = false;
-			}
-			*/
 
 		}
 
