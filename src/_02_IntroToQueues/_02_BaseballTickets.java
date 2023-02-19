@@ -58,7 +58,6 @@ public class _02_BaseballTickets {
 		System.out.println("-----");
 
 		boolean active = true;
-		int savedpos = position;
 
 		while (active) {
 
@@ -70,31 +69,10 @@ public class _02_BaseballTickets {
 
 			// +1 wait time
 			waittime += 1;
-			
-			// pos =/= 0, val =/= 0
-			// pos =/= 0, val = = 0
-			// pos = = 0, val =/= 0
-			// pos = = 0, val = = 0
-						
-			if(position != 0) {
-				position = position - 1;
-			}
-			
-			else {
-				position = savedpos;
-			}
-
-			/*
-			 * if (value = 0) if (pos = 0) = true else (pos =/= 0)
-			 * 
-			 * else (value = / =)
-			 * 
-			 */
 
 			if (newtixvalue == 0) {
 
 				if (position == 0) {
-					System.out.println("Final Queue: " + tix);
 					System.out.println("Final Wait Time: " + waittime);
 					System.out.println("");
 					System.out.println("");
@@ -109,6 +87,11 @@ public class _02_BaseballTickets {
 				System.out.println("New Queue: " + tix);
 				System.out.println("Wait Time: " + waittime);
 				System.out.println("-----");
+			}
+
+			position -= 1;
+			if (position < 0) {
+				position = tix.size() - 1;
 			}
 
 		}
